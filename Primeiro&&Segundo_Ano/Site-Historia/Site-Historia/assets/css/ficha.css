@@ -1,0 +1,149 @@
+#picture__input {
+    display: none;
+  }
+  
+  .picture {
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 2px solid currentcolor;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+    border-radius: 100%;
+    font-size: 15px;
+  }
+  .teste{display: flex;justify-content: center;}
+  .teste2{display: flex;justify-content: space-between;}
+  .teste4{height: 100%;}
+  .teste5{height: 100%; width: 50%;}
+  .teste6{width: 50%;}
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture:active {
+    border-color: turquoise;
+    color: turquoise;
+    background: #eee;
+  }
+  
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .picture__img {
+    width: 150px;
+    height: 150px;
+  
+    border-radius: 100%;
+  }
+  h1{
+    font-size: 20px;
+    color: #9A6B6B;
+    font-weight: 600;
+  }
+  .area-form{
+    background-color: #AB8B8B;
+    border-radius: 25px;
+    width: 70%;
+    padding: 0 100px;
+    
+  }
+  .area-tite-fi{
+    background-color: #FDEEE7;
+    width: 35%;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    
+  }
+  h2.tite-fi{
+    font-size: 35px;
+    color: #4B3B33;
+    font-family: 'Darker Grotesque', sans-serif;
+  }
+
+  .div-com-linha::after {
+    content: "";
+    display: block;
+    border-bottom: 6px solid #655656; /* Cor e espessura da linha */
+    margin-top: 10px; /* Ajuste a margem conforme necessário */
+}
+
+label{
+  color: #FDEEE7;
+  font-size: 25px;
+  font-family: 'Darker Grotesque', sans-serif;
+}
+
+input{
+  background-color: #D9D9D9;
+  border-radius: 10px;
+  width: 52%;
+  height: 35px;
+  border: none; 
+}
+
+input:disabled {
+  background-color: #b8abab; /* Altere para a cor desejada */
+  color: #999999; /* Altere para a cor desejada */
+}
+
+input.formatacao{
+  width: 85%;
+}
+
+.radio-form{
+  width: 25px;
+ 
+}
+.irm{
+  width: 20%;
+}
+textarea{
+  background-color: #D9D9D9;
+  border-radius: 10px;
+  width: 52%;
+  border: none; 
+}
+.final-form-cont{
+  width: 100%;
+}
+.forma-text-fx{
+  color: #9A6B6B;
+  font-size: 20px;
+  font-weight: bold;
+}
+#btn-imp{
+  color: #FDEEE7;
+  background-color: #AB8B8B;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 50px;
+}
+@media (max-width: 991px){
+  .area-form{
+    width: 100%;
+  }
+}
+@media (max-width: 767px){
+  .area-tite-fi{   
+    width: 100%;
+  }
+}
+@media (max-width: 550px){
+  .area-form{
+    padding: 0px 10px;
+  }
+}

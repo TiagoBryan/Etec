@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+
+  .criar-baralho{
+    background-color: #AB8B8B;
+    color: #FDEEE7;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 60px;
+  }
+  .criar-baralhoDois{
+    background-color: #AB8B8B;
+    color: #FDEEE7;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+  }
+  .area-arma-card{
+    background-color: white;
+    width: 70%;
+    height: 800px ;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  .post-it{
+    background-color: #FFD1F5;
+    color: #5F389D;
+    width: 60%;
+    height: 80%;
+    border-radius: 15px;
+    
+  }
+ 
+  .separacao_post-it{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0px 10px 0px;
+    height: 50%;
+  
+  }
+  .separacao_post-it h1{
+    font-size: 24px;
+  }
+  .receber_dados_post-it{
+    background-color: #FFD1F5;
+    height: 100%;
+    width: 100%;
+    
+    border: 1px solid #B254EB;
+  }
+  h2.explicacao-flash{
+    color: #9A6B6B;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  p.explicacao-flash{
+    color: #9A6B6B;
+    font-weight: 600;
+    font-size: 16px;
+    max-width: 50%;
+  }
+.redire-link-flash{
+    color: #9A6B6B;
+    font-weight: 600;
+    font-size: 20px;
+}
+.redire-link-flash a{
+    text-decoration: underline;
+    font-weight: bolder;
+    color: #5F389D;
+    font-size: 20px;
+}
+  .div-com-linha::after {
+    content: "";
+    display: block;
+    border-bottom: 3px solid #B254EB; /* Cor e espessura da linha */
+    
+}
+  #baralhos {
+    list-style: none;
+    padding: 0;
+   
+  }
+
+  .baralho {
+    margin-bottom: 10px;
+  }
+
+  .cartas {
+    list-style: none;
+    padding: 0;
+  }
+
+  .carta {
+    margin-bottom: 5px;
+  }
+  .espaco-invisivel{
+    display: none;
+}
+  @media (max-width: 768px) {
+    p.explicacao-flash{
+        max-width: 90%;
+    }
+    .area-arma-card{
+        width: 100%;
+    }
+    .post-it{
+        width: 90%;
+    }
+  }
+  @media (max-width: 510px) {
+    .espaco-invisivel{
+        display: block;
+    }
+  }
+
+   /* Estilos para o modal */
+   #myModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 9999;
+  }
+
+  /* Estilos para o fundo escuro ao redor do modal */
+  .modal-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+  }
+
+  /* Estilos para o botão de fechar no modal */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  

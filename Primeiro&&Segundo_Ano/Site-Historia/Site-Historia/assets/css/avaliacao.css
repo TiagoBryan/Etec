@@ -1,0 +1,99 @@
+.titulo-avalia{
+    color: #9A6B6B;
+    font-size: 20px;
+    font-weight: 600;
+}
+.tabela-notas{
+   
+    border-radius: 10px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px; /* Adicione esta linha para o border-radius */
+    
+  }
+
+  th, td, tr, tbody {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .div-com-linha::after {
+    content: "";
+    display: block;
+    border-bottom: 6px solid #655656; /* Cor e espessura da linha */
+    margin-top: 10px; /* Ajuste a margem conforme necessário */
+}
+
+.padding-aa{
+    padding: 0px 0px 0px 80px; 
+}
+.card-form-calc{
+    width: 60%;
+    height: 400px;
+    border-radius: 25px;
+    background-color: #AB8B8B;
+    padding: 60px;
+}
+label{
+    margin-right: 30px;
+    color: #FDEEE7;
+    width: 25%;
+    font-size: 20px;
+}
+select{
+    width: 100%;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    border: none;
+}
+.calcular-ava{
+    color: #FDEEE7;
+    background-color: #AB8B8B;
+    border-radius: 10px;
+    border: none;
+    padding: 6px 70px;
+}
+
+@media (max-width: 767px){
+    .padding-aa{
+        padding: 0px; 
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 991px){
+    .card-form-calc{
+        width: 80%;
+       
+    }
+}
+@media (max-width: 575px){
+    .card-form-calc{
+        width: 100%;
+       
+    }
+    label{
+        width: 100%;
+    }
+}
+.espaco{
+    display: none;
+}
+@media (max-width: 510px){
+    .espaco{
+        display: block;
+    }
+}
+@media (max-width: 408px){
+    .card-form-calc{
+        padding: 60px 20px;
+       
+    }
+}
