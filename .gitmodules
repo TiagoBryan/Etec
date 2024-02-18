@@ -1,3 +1,33 @@
 [submodule "AtividadeDS_Sistema_CadastroAutoPecas"]
 	path = AtividadeDS_Sistema_CadastroAutoPecas
 	url = https://github.com/TiagoBryan/AtividadeDS_Sistema_CadastroAutoPecas.git
+[submodule "Site-Historia"]
+	path = Site-Historia
+	url = https://github.com/TiagoBryan/Site-Historia.git
+[submodule "AtividadesPW2"]
+	path = AtividadesPW2
+	url = https://github.com/TiagoBryan/AtividadesPW2.git
+[submodule "Carrinho_que_apaga_fogo"]
+	path = Carrinho_que_apaga_fogo
+	url = https://github.com/TiagoBryan/Carrinho_que_apaga_fogo.git
+[submodule "Manipulacao_Cookie_PW2"]
+	path = Manipulacao_Cookie_PW2
+	url = https://github.com/TiagoBryan/Manipulacao_Cookie_PW2.git
+[submodule "AtividadesJava"]
+	path = AtividadesJava
+	url = https://github.com/TiagoBryan/AtividadesJava.git
+[submodule "ConexaoMYADMIN"]
+	path = ConexaoMYADMIN
+	url = https://github.com/TiagoBryan/ConexaoMYADMIN.git
+[submodule "AtividadesAndroidStudios"]
+	path = AtividadesAndroidStudios
+	url = https://github.com/TiagoBryan/AtividadesAndroidStudios.git
+[submodule "Formulario_votacaoPHP_Funcional"]
+	path = Formulario_votacaoPHP_Funcional
+	url = https://github.com/TiagoBryan/Formulario_votacaoPHP_Funcional.git
+[submodule "FormularioPHP"]
+	path = FormularioPHP
+	url = https://github.com/TiagoBryan/FormularioPHP.git
+[submodule "SE-Sistemas-Embarcados-"]
+	path = SE-Sistemas-Embarcados-
+	url = https://github.com/TiagoBryan/SE-Sistemas-Embarcados-.git
