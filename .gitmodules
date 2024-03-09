@@ -31,3 +31,6 @@
 [submodule "SE-Sistemas-Embarcados-"]
 	path = SE-Sistemas-Embarcados-
 	url = https://github.com/TiagoBryan/SE-Sistemas-Embarcados-.git
+[submodule "Terceiro_Ano/introducao_a_programa-o_kotlin"]
+	path = Terceiro_Ano/introducao_a_programa-o_kotlin
+	url = https://github.com/TiagoBryan/introducao_a_programa-o_kotlin.git
