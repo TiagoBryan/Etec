@@ -34,3 +34,6 @@
 [submodule "Terceiro_Ano/introducao_a_programa-o_kotlin"]
 	path = Terceiro_Ano/introducao_a_programa-o_kotlin
 	url = https://github.com/TiagoBryan/introducao_a_programa-o_kotlin.git
+[submodule "Terceiro_Ano/PW/Atividade_Site_Laravel/Site-Laravel"]
+	path = Terceiro_Ano/PW/Atividade_Site_Laravel/Site-Laravel
+	url = https://github.com/TiagoBryan/Site-Laravel.git
