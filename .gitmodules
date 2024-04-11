@@ -37,3 +37,6 @@
 [submodule "Terceiro_Ano/PW/Atividade_Site_Laravel/Site-Laravel"]
 	path = Terceiro_Ano/PW/Atividade_Site_Laravel/Site-Laravel
 	url = https://github.com/TiagoBryan/Site-Laravel.git
+[submodule "Terceiro_Ano/PAM/Atividade_kotlin_app_dice_roller/App-Dado"]
+	path = Terceiro_Ano/PAM/Atividade_kotlin_app_dice_roller/App-Dado
+	url = https://github.com/TiagoBryan/App-Dado.git
