@@ -40,3 +40,6 @@
 [submodule "Terceiro_Ano/PAM/Atividade_kotlin_app_dice_roller/App-Dado"]
 	path = Terceiro_Ano/PAM/Atividade_kotlin_app_dice_roller/App-Dado
 	url = https://github.com/TiagoBryan/App-Dado.git
+[submodule "Terceiro_Ano/PAM/AtividadeTextFieldEButton/TextField_E_Button_Jetpack_Composer"]
+	path = Terceiro_Ano/PAM/AtividadeTextFieldEButton/TextField_E_Button_Jetpack_Composer
+	url = https://github.com/TiagoBryan/TextField_E_Button_Jetpack_Composer.git
