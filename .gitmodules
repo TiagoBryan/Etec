@@ -43,3 +43,6 @@
 [submodule "Terceiro_Ano/PAM/AtividadeTextFieldEButton/TextField_E_Button_Jetpack_Composer"]
 	path = Terceiro_Ano/PAM/AtividadeTextFieldEButton/TextField_E_Button_Jetpack_Composer
 	url = https://github.com/TiagoBryan/TextField_E_Button_Jetpack_Composer.git
+[submodule "Terceiro_Ano/PW/Atividad_Laravel_Template_E_Acao_De_Formulario/TemplateEacaoDeFormularioEmLaravel"]
+	path = Terceiro_Ano/PW/Atividad_Laravel_Template_E_Acao_De_Formulario/TemplateEacaoDeFormularioEmLaravel
+	url = https://github.com/TiagoBryan/TemplateEacaoDeFormularioEmLaravel.git
