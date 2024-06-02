@@ -46,3 +46,6 @@
 [submodule "Terceiro_Ano/PW/Atividad_Laravel_Template_E_Acao_De_Formulario/TemplateEacaoDeFormularioEmLaravel"]
 	path = Terceiro_Ano/PW/Atividad_Laravel_Template_E_Acao_De_Formulario/TemplateEacaoDeFormularioEmLaravel
 	url = https://github.com/TiagoBryan/TemplateEacaoDeFormularioEmLaravel.git
+[submodule "Terceiro_Ano/PAM/APP-SQLite"]
+	path = Terceiro_Ano/PAM/APP-SQLite
+	url = https://github.com/TiagoBryan/APP-SQLite.git
