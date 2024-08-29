@@ -49,3 +49,6 @@
 [submodule "Terceiro_Ano/PAM/APP-SQLite"]
 	path = Terceiro_Ano/PAM/APP-SQLite
 	url = https://github.com/TiagoBryan/APP-SQLite.git
+[submodule "Terceiro_Ano/PW/ChatAMS3"]
+	path = Terceiro_Ano/PW/ChatAMS3
+	url = https://github.com/TiagoBryan/ChatAMS3.git
