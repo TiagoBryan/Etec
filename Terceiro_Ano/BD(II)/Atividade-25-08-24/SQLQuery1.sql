@@ -101,4 +101,37 @@ SELECT P.cod_pedido, P.data_pedido, C.nome_cliente FROM TBL_Pedido P INNER JOIN 
 
 
 
+INSERT INTO TBL_Cliente (cod_cliente, nome_cliente, cod_est_civ, salario) VALUES (4, 'Rener', 1, 4000.00), (5, 'Daniel', 2, 3500.00);
+INSERT INTO TBL_Produto (cod_produto, nome_produto, tipo_produto) VALUES (4, 'Fosforo', 'Utilidades');
+INSERT INTO TBL_Func (cod_func, nome_func) VALUES (4, 'Roseane');
+INSERT INTO TBL_Pedido (cod_pedido, cod_cliente, cod_func, data_pedido) VALUES(4, 4, 1, '2024-08-04'),(5, 5, 4, '2024-08-05');
+INSERT INTO TBL_Item_Pedido (cod_pedido, cod_produto, qtde_produto) VALUES(4, 1, 1),(4, 4, 2),(5, 1, 1),(5, 2, 1),(5, 3, 1);
+
+SELECT p.cod_pedido, p.data_pedido, f.nome_func FROM TBL_Pedido p JOIN TBL_Cliente c ON p.cod_cliente = c.cod_cliente JOIN TBL_Func f ON p.cod_func = f.cod_func WHERE c.nome_cliente = 'Rener';
+
+SELECT f.nome_func, d.nome_dep, d.data_nasc FROM TBL_Func f JOIN TBL_Dependente d ON f.cod_func = d.cod_func;
+
+SELECT p.cod_pedido, p.data_pedido, pr.nome_produto FROM TBL_Pedido p JOIN TBL_Item_Pedido ip ON p.cod_pedido = ip.cod_pedido JOIN TBL_Produto pr ON ip.cod_produto = pr.cod_produto;
+
+SELECT p.cod_pedido, p.data_pedido, f.nome_func FROM TBL_Pedido p JOIN TBL_Item_Pedido ip ON p.cod_pedido = ip.cod_pedido JOIN TBL_Produto pr ON ip.cod_produto = pr.cod_produto JOIN TBL_Func f ON p.cod_func = f.cod_func WHERE pr.nome_produto = 'Fosforo';
+
+SELECT p.cod_pedido, p.data_pedido, pr.nome_produto FROM TBL_Pedido p JOIN TBL_Cliente c ON p.cod_cliente = c.cod_cliente JOIN TBL_Item_Pedido ip ON p.cod_pedido = ip.cod_pedido JOIN TBL_Produto pr ON ip.cod_produto = pr.cod_produto WHERE c.nome_cliente = 'Daniel';
+
+SELECT pr.nome_produto FROM TBL_Pedido p JOIN TBL_Item_Pedido ip ON p.cod_pedido = ip.cod_pedido JOIN TBL_Produto pr ON ip.cod_produto = pr.cod_produto JOIN TBL_Func f ON p.cod_func = f.cod_func WHERE f.nome_func = 'Roseane';
+
+SELECT c.nome_cliente, pr.nome_produto FROM TBL_Pedido p JOIN TBL_Cliente c ON p.cod_cliente = c.cod_cliente JOIN TBL_Item_Pedido ip ON p.cod_pedido = ip.cod_pedido JOIN TBL_Produto pr ON ip.cod_produto = pr.cod_produto;
+
+SELECT f.nome_func, pr.nome_produto FROM TBL_Pedido p JOIN TBL_Item_Pedido ip ON p.cod_pedido = ip.cod_pedido JOIN TBL_Produto pr ON ip.cod_produto = pr.cod_produto JOIN TBL_Func f ON p.cod_func = f.cod_func;
+
+
+
+
+
+
+
+
+
+
+
+
 
