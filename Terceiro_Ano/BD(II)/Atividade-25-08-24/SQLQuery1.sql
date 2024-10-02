@@ -1,3 +1,5 @@
+Create database Vendas
+
 CREATE TABLE TBL_Estado_Civil (
     cod_est_civ INT PRIMARY KEY,
     desc_est_civ VARCHAR(50)
@@ -74,13 +76,13 @@ CREATE TABLE TBL_Item_Pedido (
     FOREIGN KEY (cod_produto) REFERENCES TBL_Produto(cod_produto)
 );
 
-
+--Parte 1 --
 INSERT INTO TBL_Estado_Civil (cod_est_civ, desc_est_civ) VALUES (1, 'Solteiro'), (2, 'Casado'), (3, 'Divorciado');
-INSERT INTO TBL_Cliente (cod_cliente, nome_cliente, cod_est_civ, salario) VALUES (1, 'Jo鉶 Silva', 2, 3000.00), (2, 'Maria Oliveira', 1, 4500.00), (3, 'Carlos Souza', 2, 5000.00);
+INSERT INTO TBL_Cliente (cod_cliente, nome_cliente, cod_est_civ, salario) VALUES (1, 'Jo茫o Silva', 2, 3000.00), (2, 'Maria Oliveira', 1, 4500.00), (3, 'Carlos Souza', 2, 5000.00);
 INSERT INTO TBL_Conjuge (cod_conjuge, nome_conjuge, cod_cliente) VALUES (1, 'Ana Silva', 1), (2, 'Juliana Souza', 3);
 INSERT INTO TBL_Telefone (cod_fone, cod_cliente, numero_fone) VALUES (1, 1, '1234-5678'), (2, 2, '2345-6789'), (3, 3, '3456-7890');
 INSERT INTO TBL_Tipo_Fone (cod_fone, desc_fone) VALUES (1, 'Residencial'), (2, 'Celular'), (3, 'Comercial');
-INSERT INTO TBL_Produto (cod_produto, nome_produto, tipo_produto) VALUES (1, 'Produto A', 'Eletr鬾ico'), (2, 'Produto B', 'M髒el'), (3, 'Produto C', 'Eletrodom閟tico');
+INSERT INTO TBL_Produto (cod_produto, nome_produto, tipo_produto) VALUES (1, 'Produto A', 'Eletr么nico'), (2, 'Produto B', 'M贸vel'), (3, 'Produto C', 'Eletrodom茅stico');
 INSERT INTO TBL_Func (cod_func, nome_func) VALUES (1, 'Francisco'), (2, 'Roberto'), (3, 'Ana Paula');
 INSERT INTO TBL_Premio (cod_func, valor_premio) VALUES (1, 1000.00), (2, 1500.00), (3, 2000.00);
 INSERT INTO TBL_Dependente (cod_dep, nome_dep, data_nasc, cod_func) VALUES (1, 'Pedro', '2010-05-15', 1), (2, 'Lucas', '2012-08-20', 2), (3, 'Beatriz', '2015-10-10', 3);
@@ -98,9 +100,7 @@ SELECT P.*, C.nome_cliente, F.nome_func FROM TBL_Pedido P INNER JOIN TBL_Cliente
 
 SELECT P.cod_pedido, P.data_pedido, C.nome_cliente FROM TBL_Pedido P INNER JOIN TBL_Cliente C ON P.cod_cliente = C.cod_cliente INNER JOIN TBL_Func F ON P.cod_func = F.cod_func WHERE F.nome_func = 'Francisco';
 
-
-
-
+--Parte 2--
 INSERT INTO TBL_Cliente (cod_cliente, nome_cliente, cod_est_civ, salario) VALUES (4, 'Rener', 1, 4000.00), (5, 'Daniel', 2, 3500.00);
 INSERT INTO TBL_Produto (cod_produto, nome_produto, tipo_produto) VALUES (4, 'Fosforo', 'Utilidades');
 INSERT INTO TBL_Func (cod_func, nome_func) VALUES (4, 'Roseane');
@@ -123,15 +123,28 @@ SELECT c.nome_cliente, pr.nome_produto FROM TBL_Pedido p JOIN TBL_Cliente c ON p
 
 SELECT f.nome_func, pr.nome_produto FROM TBL_Pedido p JOIN TBL_Item_Pedido ip ON p.cod_pedido = ip.cod_pedido JOIN TBL_Produto pr ON ip.cod_produto = pr.cod_produto JOIN TBL_Func f ON p.cod_func = f.cod_func;
 
+--Parte 3 --
 
+INSERT INTO TBL_Produto (cod_produto, nome_produto, tipo_produto) VALUES (5, 'Produto D', 'Eletr么nico'), (6, 'Produto E', 'M贸vel'), (7, 'Produto F', 'Eletrodom茅stico');
 
+-- Group By --
+SELECT F.nome_func, SUM(P.valor_premio) AS total_premio FROM TBL_Func F JOIN TBL_Premio P ON F.cod_func = P.cod_func GROUP BY F.nome_func;
 
+SELECT F.nome_func, COUNT(D.cod_dep) AS qtde_dependentes FROM TBL_Func F LEFT JOIN TBL_Dependente D ON F.cod_func = D.cod_func GROUP BY F.nome_func;
 
+SELECT EC.desc_est_civ, COUNT(C.cod_cliente) AS qtde_clientes FROM TBL_Cliente C JOIN TBL_Estado_Civil EC ON C.cod_est_civ = EC.cod_est_civ GROUP BY EC.desc_est_civ;
 
+-- SubQuery --
 
+SELECT * FROM TBL_Cliente C WHERE NOT EXISTS ( SELECT 1 FROM TBL_Telefone T WHERE T.cod_cliente = C.cod_cliente);
 
+SELECT * FROM TBL_Cliente C WHERE C.cod_est_civ = (SELECT cod_est_civ FROM TBL_Estado_Civil WHERE desc_est_civ = 'Solteiro');
 
+SELECT * FROM TBL_Cliente C WHERE C.cod_est_civ = (SELECT cod_est_civ FROM TBL_Estado_Civil WHERE desc_est_civ = 'Casado');
 
+SELECT * FROM TBL_Func F WHERE NOT EXISTS (SELECT 1 FROM TBL_Premio P WHERE P.cod_func = F.cod_func);
 
+SELECT * FROM TBL_Func F WHERE NOT EXISTS (SELECT 1 FROM TBL_Dependente D WHERE D.cod_func = F.cod_func);
 
+SELECT * FROM TBL_Produto P WHERE NOT EXISTS (SELECT 1 FROM TBL_Item_Pedido IP WHERE IP.cod_produto = P.cod_produto);
 
