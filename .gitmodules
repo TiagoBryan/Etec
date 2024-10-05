@@ -52,3 +52,6 @@
 [submodule "Terceiro_Ano/PW/ChatAMS3"]
 	path = Terceiro_Ano/PW/ChatAMS3
 	url = https://github.com/TiagoBryan/ChatAMS3.git
+[submodule "Terceiro_Ano/PAM/App-Firebase-Final"]
+	path = Terceiro_Ano/PAM/App-Firebase-Final
+	url = https://github.com/TiagoBryan/App-Firebase-Final.git
