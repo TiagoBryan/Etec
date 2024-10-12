@@ -1,176 +1,188 @@
--- CriaÁ„o da base de dados chamada "Industria_de_Beleza"
+-- Cria√ß√£o do Banco de Dados para a Ind√∫stria de Beleza
 CREATE DATABASE Industria_de_Beleza;
-USE Industria_de_Beleza;
+--USE Industria_de_Beleza;
 
--- Tabela "Regiao" com os atributos CÛdigo e Nome.
+-- Tabela 'Regiao': Define as regi√µes geogr√°ficas onde os vendedores atuam.
 CREATE TABLE Regiao (
-    Codigo INT PRIMARY KEY, -- Chave prim·ria da tabela Regi„o
-    Nome VARCHAR(100)       -- Nome da regi„o
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100)
 );
 
--- Tabela "PontoEstrategico" com relaÁ„o ‡ "Regiao" por meio de uma chave estrangeira.
+-- Tabela 'PontoEstrategico': Define pontos estrat√©gicos dentro de cada regi√£o, como √°reas espec√≠ficas de atua√ß√£o dos vendedores.
 CREATE TABLE PontoEstrategico (
-    Codigo INT PRIMARY KEY,   -- Chave prim·ria do ponto estratÈgico
-    Nome VARCHAR(100),        -- Nome do ponto estratÈgico
-    RegiaoCodigo INT,         -- Chave estrangeira referenciando a tabela "Regiao"
-    FOREIGN KEY (RegiaoCodigo) REFERENCES Regiao(Codigo) -- Relacionamento com a tabela "Regiao"
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    RegiaoCodigo INT,  -- Relacionamento com a tabela 'Regiao'
+    FOREIGN KEY (RegiaoCodigo) REFERENCES Regiao(Codigo)
 );
 
--- Tabela "Vendedor" com relaÁ„o ‡ "Regiao" por meio de uma chave estrangeira.
+-- Tabela 'Vendedor': Representa os vendedores que trabalham para a ind√∫stria, associados a uma regi√£o espec√≠fica.
 CREATE TABLE Vendedor (
-    Codigo INT PRIMARY KEY,  -- Chave prim·ria do vendedor
-    Nome VARCHAR(100),       -- Nome do vendedor
-    RegiaoCodigo INT,        -- Chave estrangeira referenciando a tabela "Regiao"
-    FOREIGN KEY (RegiaoCodigo) REFERENCES Regiao(Codigo) -- Relacionamento com a tabela "Regiao"
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    RegiaoCodigo INT,  -- Relacionamento com a tabela 'Regiao'
+    FOREIGN KEY (RegiaoCodigo) REFERENCES Regiao(Codigo)
 );
 
--- Tabela "Veiculo" com relaÁ„o ‡ "Vendedor" por meio de uma chave estrangeira.
+-- Tabela 'Veiculo': Cont√©m informa√ß√µes sobre os ve√≠culos utilizados pelos vendedores para o trabalho.
 CREATE TABLE Veiculo (
     Codigo INT PRIMARY KEY,
-    Nome VARCHAR(100),        -- Nome do veÌculo
-    VendedorCodigo INT,       -- CÛdigo do vendedor associado
-    DataUso DATE,             -- Data de uso do veÌculo
+    Nome VARCHAR(100), 
+    VendedorCodigo INT,  -- Relacionamento com a tabela 'Vendedor'
     FOREIGN KEY (VendedorCodigo) REFERENCES Vendedor(Codigo)
 );
 
--- Tabela "Produto" que armazena produtos disponÌveis e seu status de venda.
+-- Tabela 'Produto': Armazena os produtos vendidos pela ind√∫stria de beleza, com um status indicando se est√£o √† venda ou n√£o.
 CREATE TABLE Produto (
-    Codigo INT PRIMARY KEY,  -- Chave prim·ria do produto
-    Nome VARCHAR(100),       -- Nome do produto
-    StatusVenda BIT          -- Status de venda (1 = vendido, 0 = n„o vendido)
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    StatusVenda BIT  -- Indica se o produto est√° dispon√≠vel para venda (1 = dispon√≠vel, 0 = indispon√≠vel)
 );
 
--- Tabela "NotaFiscal" com relaÁ„o ‡ "Vendedor" por meio de uma chave estrangeira.
+
+-- Tabela 'Cliente': Cont√©m informa√ß√µes sobre os clientes que compram os produtos da ind√∫stria, associando-os √†s notas fiscais.
+CREATE TABLE Cliente (
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100),  -- Nome do cliente
+    Endereco VARCHAR(255),  -- Endere√ßo do cliente
+    DataNascimento DATE,  -- Data de nascimento do cliente
+    CPF VARCHAR(11)  -- CPF do cliente
+);
+
+-- Tabela 'NotaFiscal': Representa as notas fiscais emitidas para cada venda, associando-as a um vendedor e cliente.
 CREATE TABLE NotaFiscal (
-    Codigo INT PRIMARY KEY,  -- Chave prim·ria da nota fiscal
-    Data DATE,               -- Data da emiss„o da nota
-    VendedorCodigo INT,      -- Chave estrangeira referenciando a tabela "Vendedor"
-    FOREIGN KEY (VendedorCodigo) REFERENCES Vendedor(Codigo) -- Relacionamento com a tabela "Vendedor"
+    Codigo INT PRIMARY KEY,
+    Data DATE,  -- Data de emiss√£o da nota fiscal
+    VendedorCodigo INT,  -- Relacionamento com a tabela 'Vendedor'
+    ClienteCodigo INT,   -- Relacionamento com a tabela 'Cliente'
+    FOREIGN KEY (VendedorCodigo) REFERENCES Vendedor(Codigo),
+    FOREIGN KEY (ClienteCodigo) REFERENCES Cliente(Codigo)
 );
 
--- Tabela associativa "NotaFiscalProduto" para criar a relaÁ„o entre nota fiscal e produtos.
+-- Tabela 'NotaFiscalProduto': Faz a associa√ß√£o entre as notas fiscais e os produtos vendidos, armazenando as quantidades vendidas de cada produto.
 CREATE TABLE NotaFiscalProduto (
-    NotaFiscalCodigo INT,    -- Chave estrangeira referenciando a tabela "NotaFiscal"
-    ProdutoCodigo INT,       -- Chave estrangeira referenciando a tabela "Produto"
-    Quantidade INT,          -- Quantidade de produtos vendidos
-    FOREIGN KEY (NotaFiscalCodigo) REFERENCES NotaFiscal(Codigo), -- Relacionamento com a tabela "NotaFiscal"
-    FOREIGN KEY (ProdutoCodigo) REFERENCES Produto(Codigo)        -- Relacionamento com a tabela "Produto"
+    NotaFiscalCodigo INT,  -- Relacionamento com a tabela 'NotaFiscal'
+    ProdutoCodigo INT,  -- Relacionamento com a tabela 'Produto'
+    Quantidade INT,  -- Quantidade do produto vendido na nota fiscal
+    FOREIGN KEY (NotaFiscalCodigo) REFERENCES NotaFiscal(Codigo),
+    FOREIGN KEY (ProdutoCodigo) REFERENCES Produto(Codigo)
 );
 
--- InserÁ„o das regiıes.
-INSERT INTO Regiao (Codigo, Nome) VALUES (1, 'Centro');
-INSERT INTO Regiao (Codigo, Nome) VALUES (2, 'Norte'), (3, 'Sul'), (4, 'Leste'), (5, 'Oeste');
-
--- InserÁ„o dos vendedores, que est„o associados ‡s regiıes.
-INSERT INTO Vendedor (Codigo, Nome, RegiaoCodigo) VALUES (1, 'Jo„o', 1); -- Vendedor Joao na regi„o Centro
-INSERT INTO Vendedor (Codigo, Nome, RegiaoCodigo) 
-VALUES 
-(2, 'Maria', 2),   -- Vendedora Maria na regi„o Norte
-(3, 'Carlos', 3),  -- Vendedor Carlos na regi„o Sul
-(4, 'Ana', 4),     -- Vendedora Ana na regi„o Leste
-(5, 'Pedro', 5);   -- Vendedor Pedro na regi„o Oeste
-
--- InserÁ„o dos veiculos usados pelos vendedores, com as datas de uso.
-INSERT INTO Veiculo (Codigo, Nome, VendedorCodigo, DataUso) 
-VALUES 
-(1, 'VeÌculo A', 1, '2024-09-01'),  -- VeÌculo de Jo„o na regi„o Centro
-(2, 'VeÌculo B', 2, '2024-09-03'),  -- VeÌculo de Maria na regi„o Norte
-(3, 'VeÌculo C', 3, '2024-09-04'),  -- VeÌculo de Carlos na regi„o Sul
-(4, 'VeÌculo D', 4, '2024-09-05'),  -- VeÌculo de Ana na regi„o Leste
-(5, 'VeÌculo E', 5, '2024-09-06');  -- VeÌculo de Pedro na regi„o Oeste
-
--- InserÁ„o de produtos com o status de venda (1 = vendido e 0 = n„o vendido).
-INSERT INTO Produto (Codigo, Nome, StatusVenda) VALUES (1, 'Produto A', 1); -- Produto vendido
-INSERT INTO Produto (Codigo, Nome, StatusVenda) 
-VALUES 
-(2, 'Produto B', 1),  -- Produto vendido
-(3, 'Produto C', 0),  -- Produto n„o vendido
-(4, 'Produto D', 1);  -- Produto vendido
-
--- InserÁ„o de notas fiscais emitidas pelos vendedores nas respectivas datas.
-INSERT INTO NotaFiscal (Codigo, Data, VendedorCodigo) VALUES (1, '2024-09-02', 1); -- Nota Fiscal emitida por Jo„o
-INSERT INTO NotaFiscal (Codigo, Data, VendedorCodigo) 
-VALUES 
-(2, '2024-09-03', 2),  -- Nota Fiscal emitida por Maria
-(3, '2024-09-04', 3),  -- Nota Fiscal emitida por Carlos
-(4, '2024-09-05', 4),  -- Nota Fiscal emitida por Ana
-(5, '2024-09-06', 5);  -- Nota Fiscal emitida por Pedro
-
--- InserÁ„o dos produtos nas notas fiscais.
-INSERT INTO NotaFiscalProduto (NotaFiscalCodigo, ProdutoCodigo, Quantidade) VALUES (1, 1, 10); -- Nota 1 vendeu 10 unidades do Produto A
-INSERT INTO NotaFiscalProduto (NotaFiscalCodigo, ProdutoCodigo, Quantidade) 
-VALUES 
-(2, 2, 5),  -- Nota 2 vendeu 5 unidades do Produto B
-(3, 3, 0),  -- Nota 3 n„o vendeu Produto C
-(4, 4, 8),  -- Nota 4 vendeu 8 unidades do Produto D
-(5, 1, 3);  -- Nota 5 vendeu 3 unidades do Produto A
-
--- InserÁ„o de pontos estratÈgicos para as regiıes.
-INSERT INTO PontoEstrategico (Codigo, Nome, RegiaoCodigo) 
-VALUES (1, 'Ponto A', 1), (2, 'Ponto B', 1), (3, 'Ponto C', 1);  -- Ponto na regi„o Centro
-INSERT INTO PontoEstrategico (Codigo, Nome, RegiaoCodigo) 
-VALUES 
-(4, 'Ponto D', 2),  -- Ponto na regi„o Norte
-(5, 'Ponto E', 2),  
-(6, 'Ponto F', 3),  -- Ponto na regi„o Sul
-(7, 'Ponto G', 3),  
-(8, 'Ponto H', 4),  -- Ponto na regi„o Leste
-(9, 'Ponto I', 5);  -- Ponto na regi„o Oeste
+-- Tabela 'Escala': Representa a escala de uso dos ve√≠culos pelos vendedores, indicando quando um ve√≠culo foi utilizado por um vendedor.
+CREATE TABLE Escala (
+    Codigo INT PRIMARY KEY,
+    DataUso DATE,  -- Data em que o ve√≠culo foi utilizado
+    VendedorCodigo INT,  -- Relacionamento com a tabela 'Vendedor'
+    VeiculoCodigo INT,  -- Relacionamento com a tabela 'Veiculo'
+    FOREIGN KEY (VendedorCodigo) REFERENCES Vendedor(Codigo),
+    FOREIGN KEY (VeiculoCodigo) REFERENCES Veiculo(Codigo)
+);
 
 
--- Consulta para listar os pontos estratÈgicos de cada regi„o.
+
+-- Inserindo dados nas tabelas
+-- Inserindo regi√µes e pontos estrat√©gicos
+INSERT INTO Regiao (Codigo, Nome) VALUES (1, 'Centro'), (2, 'Norte'), (3, 'Sul');
+INSERT INTO PontoEstrategico (Codigo, Nome, RegiaoCodigo) VALUES 
+(1, 'Ponto A', 1), 
+(2, 'Ponto B', 1), 
+(3, 'Ponto C', 1), 
+(4, 'Ponto D', 2),
+(5, 'Ponto E', 3);
+
+-- Inserindo vendedores, associando-os √†s regi√µes
+INSERT INTO Vendedor (Codigo, Nome, RegiaoCodigo) VALUES 
+(1, 'Jo√£o', 1), 
+(2, 'Maria', 2),
+(3, 'Pedro', 3);
+
+-- Inserindo ve√≠culos, associando-os a vendedores
+INSERT INTO Veiculo (Codigo, Nome, VendedorCodigo) VALUES 
+(1, 'Ve√≠culo A', 1),
+(2, 'Ve√≠culo B', 2),
+(3, 'Ve√≠culo C', 3);
+
+-- Inserindo produtos, com seu status de venda (1 = dispon√≠vel, 0 = indispon√≠vel)
+INSERT INTO Produto (Codigo, Nome, StatusVenda) VALUES 
+(1, 'Produto A', 1),
+(2, 'Produto B', 1),
+(3, 'Produto C', 0);
+
+-- Inserindo clientes
+INSERT INTO Cliente (Codigo, Nome, Endereco, DataNascimento, CPF) VALUES
+(1, 'Carlos Silva', 'Rua A, 123', '1985-05-12', '12345678901'),
+(2, 'Ana Oliveira', 'Rua B, 456', '1990-06-24', '23456789012'),
+(3, 'Roberto Souza', 'Rua C, 789', '1978-11-03', '34567890123');
+
+-- Inserindo notas fiscais, associando-as aos vendedores e clientes
+INSERT INTO NotaFiscal (Codigo, Data, VendedorCodigo, ClienteCodigo) VALUES 
+(1, '2024-09-02', 1, 1),
+(2, '2024-09-05', 2, 2),
+(3, '2024-09-08', 3, 3);
+
+-- Inserindo os produtos vendidos em cada nota fiscal
+INSERT INTO NotaFiscalProduto (NotaFiscalCodigo, ProdutoCodigo, Quantidade) VALUES 
+(1, 1, 10),
+(2, 2, 5),
+(3, 3, 7);
+
+-- Inserindo escalas, indicando quando e qual ve√≠culo foi usado por cada vendedor
+INSERT INTO Escala (Codigo, DataUso, VendedorCodigo, VeiculoCodigo) VALUES
+(1, '2024-10-01', 1, 1),
+(2, '2024-09-02', 2, 2),
+(3, '2024-09-03', 3, 3);
+
+-- Consulta para listar os pontos estrat√©gicos de cada regi√£o.
 SELECT Regiao.Nome AS Regiao, PontoEstrategico.Nome AS PontoEstrategico
 FROM Regiao
 JOIN PontoEstrategico ON Regiao.Codigo = PontoEstrategico.RegiaoCodigo;
 
--- Consulta para listar todas as regiıes cadastradas.
+-- Consulta para listar todas as regi√µes cadastradas.
 SELECT Nome FROM Regiao;
 
--- Consulta para listar os vendedores e quais veÌculos utilizaram no ˙ltimo mÍs.
-SELECT Vendedor.Nome, Veiculo.Codigo, Veiculo.Nome
+-- Consulta para listar os vendedores e quais ve√≠culos utilizaram no √∫ltimo m√™s.
+SELECT Vendedor.Nome AS Vendedor, Veiculo.Nome AS Veiculo, Escala.DataUso
 FROM Vendedor
-JOIN Veiculo ON Vendedor.Codigo = Veiculo.VendedorCodigo
-WHERE DataUso BETWEEN DATEADD(MONTH, -1, GETDATE()) AND GETDATE();
+JOIN Escala ON Vendedor.Codigo = Escala.VendedorCodigo
+JOIN Veiculo ON Escala.VeiculoCodigo = Veiculo.Codigo
+WHERE Escala.DataUso BETWEEN DATEADD(MONTH, -1, GETDATE()) AND GETDATE();
 
--- Consulta para listar os vendedores e suas respectivas regiıes.
-SELECT Vendedor.Nome, Regiao.Nome
+-- Consulta para listar os vendedores e suas respectivas regi√µes.
+SELECT Vendedor.Nome AS Vendedor, Regiao.Nome AS Regiao
 FROM Vendedor
 JOIN Regiao ON Vendedor.RegiaoCodigo = Regiao.Codigo;
 
--- Consulta para obter os produtos de um vendedor especÌfico (Jo„o, VendedorCodigo = 1).
-SELECT 
-    Produto.Codigo AS Codigo_Produto,
-    Produto.Nome AS Nome_Produto,
-    Produto.StatusVenda,
-    NotaFiscal.Codigo AS Codigo_NotaFiscal,
-    NotaFiscal.Data AS Data_NotaFiscal,
-    NotaFiscalProduto.Quantidade AS Quantidade_Produto_Vendido
-FROM 
-    NotaFiscal
-JOIN 
-    NotaFiscalProduto ON NotaFiscal.Codigo = NotaFiscalProduto.NotaFiscalCodigo
-JOIN 
-    Produto ON NotaFiscalProduto.ProdutoCodigo = Produto.Codigo
-WHERE 
-    NotaFiscal.VendedorCodigo = 1;
-
+-- Consulta para obter os produtos de um vendedor espec√≠fico (Jo√£o, VendedorCodigo = 1).
+SELECT Produto.Nome AS Produto, NotaFiscal.Data AS DataVenda, NotaFiscalProduto.Quantidade
+FROM NotaFiscal
+JOIN NotaFiscalProduto ON NotaFiscal.Codigo = NotaFiscalProduto.NotaFiscalCodigo
+JOIN Produto ON NotaFiscalProduto.ProdutoCodigo = Produto.Codigo
+WHERE NotaFiscal.VendedorCodigo = 1;
 
 -- Consulta para listar os vendedores que venderam um determinado produto (Produto A, ProdutoCodigo = 1).
-SELECT Vendedor.Nome
-FROM Vendedor
-JOIN NotaFiscal ON Vendedor.Codigo = NotaFiscal.VendedorCodigo
+SELECT Vendedor.Nome AS Vendedor, Produto.Nome AS Produto
+FROM NotaFiscal
+JOIN Vendedor ON NotaFiscal.VendedorCodigo = Vendedor.Codigo
 JOIN NotaFiscalProduto ON NotaFiscal.Codigo = NotaFiscalProduto.NotaFiscalCodigo
-WHERE ProdutoCodigo = 1;
+JOIN Produto ON NotaFiscalProduto.ProdutoCodigo = Produto.Codigo
+WHERE Produto.Codigo = 1;
 
--- Consulta para listar os produtos que ainda n„o foram vendidos.
-SELECT Nome FROM Produto WHERE StatusVenda = 0;
+-- Consulta para listar os produtos que ainda n√£o foram vendidos.
+SELECT Produto.Nome FROM Produto WHERE Produto.StatusVenda = 0;
 
--- Consulta para listar os detalhes de um veÌculo especÌfico (VeÌculo com CÛdigo 1).
-SELECT * FROM Veiculo WHERE Codigo = 1;
+-- Consulta para listar os detalhes de um ve√≠culo espec√≠fico (Ve√≠culo com C√≥digo 1).
+SELECT Veiculo.Nome AS Veiculo, Vendedor.Nome AS Vendedor, Escala.DataUso
+FROM Escala
+JOIN Veiculo ON Escala.VeiculoCodigo = Veiculo.Codigo
+JOIN Vendedor ON Escala.VendedorCodigo = Vendedor.Codigo
+WHERE Veiculo.Codigo = 1;
 
 -- Consulta para obter a quantidade de itens vendidos em cada nota fiscal.
-SELECT NotaFiscal.Codigo, SUM(NotaFiscalProduto.Quantidade) AS TotalItens
+SELECT NotaFiscal.Codigo AS NotaFiscal, SUM(NotaFiscalProduto.Quantidade) AS TotalItens
 FROM NotaFiscal
 JOIN NotaFiscalProduto ON NotaFiscal.Codigo = NotaFiscalProduto.NotaFiscalCodigo
 GROUP BY NotaFiscal.Codigo;
+
+
+
 
